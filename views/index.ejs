@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<main>
+  <section class="date-bar">
+    <form method="GET" action="/">
+      <label>📅 Date:</label>
+      <input type="date" name="date" value="<%= date %>" onchange="this.form.submit()" />
+    </form>
+  </section>
+
+  <section class="totals">
+    <div class="total-card cal">
+      <span class="label">Calories</span>
+      <span class="value"><%= totals.calories %></span>
+      <span class="unit">kcal</span>
+    </div>
+    <div class="total-card pro">
+      <span class="label">Protein</span>
+      <span class="value"><%= totals.protein %></span>
+      <span class="unit">g</span>
+    </div>
+    <div class="total-card carb">
+      <span class="label">Carbs</span>
+      <span class="value"><%= totals.carbs %></span>
+      <span class="unit">g</span>
+    </div>
+    <div class="total-card fat">
+      <span class="label">Fats</span>
+      <span class="value"><%= totals.fats %></span>
+      <span class="unit">g</span>
+    </div>
+  </section>
+
+  <section class="add-form">
+    <h2>Add Food</h2>
+    <form method="POST" action="/add">
+      <input type="hidden" name="date" value="<%= date %>" />
+      <div class="form-row">
+        <input type="text"   name="food_name" placeholder="Food name" required />
+        <input type="number" name="calories"  placeholder="Calories"  required min="0" />
+        <input type="number" name="protein"   placeholder="Protein (g)"  min="0" />
+        <input type="number" name="carbs"     placeholder="Carbs (g)"    min="0" />
+        <input type="number" name="fats"      placeholder="Fats (g)"     min="0" />
+        <button type="submit">Add</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="entries">
+    <h2>Today's Log</h2>
+    <% if (entries.length === 0) { %>
+      <p class="empty">No entries yet. Add your first meal!</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fats</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% entries.forEach(entry => { %>
+            <tr>
+              <td><%= entry.food_name %></td>
+              <td><%= entry.calories %> kcal</td>
+              <td><%= entry.protein %>g</td>
+              <td><%= entry.carbs %>g</td>
+              <td><%= entry.fats %>g</td>
+              <td>
+                <form method="POST" action="/delete/<%= entry.id %>">
+                  <button class="delete-btn" type="submit">✕</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </section>
+</main>
+
+<script src="/script.js"></script>
+</body>
+</html>

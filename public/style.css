@@ -1,0 +1,144 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+  min-height: 100vh;
+}
+
+nav {
+  background: #2d3748;
+  color: white;
+  padding: 16px 32px;
+}
+
+nav h1 { font-size: 1.5rem; }
+
+main {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Date bar */
+.date-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.date-bar input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Totals */
+.totals {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.total-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-top: 4px solid #ccc;
+}
+.total-card.cal { border-color: #e53e3e; }
+.total-card.pro { border-color: #38a169; }
+.total-card.carb { border-color: #d69e2e; }
+.total-card.fat  { border-color: #3182ce; }
+
+.total-card .label { font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; }
+.total-card .value { font-size: 2rem; font-weight: 700; }
+.total-card .unit  { font-size: 0.8rem; color: #a0aec0; }
+
+/* Add form */
+.add-form {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.add-form h2 { margin-bottom: 16px; font-size: 1.1rem; }
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.form-row input {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.form-row input:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+.form-row button {
+  padding: 10px 24px;
+  background: #2d3748;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.form-row button:hover { background: #4a5568; }
+
+/* Entries table */
+.entries {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.entries h2 { margin-bottom: 16px; font-size: 1.1rem; }
+.empty { color: #a0aec0; text-align: center; padding: 32px; }
+
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #718096;
+  border-bottom: 1px solid #e2e8f0;
+}
+td {
+  padding: 12px;
+  border-bottom: 1px solid #f7fafc;
+  font-size: 0.95rem;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f7fafc; }
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.delete-btn:hover { background: #fff5f5; }
+
+@media (max-width: 600px) {
+  .totals { grid-template-columns: repeat(2, 1fr); }
+  .form-row { flex-direction: column; }
+}
